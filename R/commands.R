@@ -13,7 +13,7 @@ sysreq_commands <- function(desc, platform = current_platform(),
   pkgs <- sysreqs(desc, platform, soft = soft)
 
   url <- make_url(
-    sysreqs_platform_url,
+    sysreqs_platform_url(),
     platform = platform
   )
 
@@ -27,7 +27,7 @@ sysreq_commands <- function(desc, platform = current_platform(),
   script_inst <- if (length(scripts)) {
     files <- gsub("^script: ", "", scripts)
     paste0(
-      sprintf("bash <(curl -L -s %s/script/%s)", sysreqs_base_url, files),
+      sprintf("bash <(curl -L -s %s/script/%s)", sysreqs_base_url(), files),
       collapse = "\n"
     )
   }

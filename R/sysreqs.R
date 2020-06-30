@@ -13,7 +13,7 @@ get_cran_sysreqs <- function(package, platform = current_platform()) {
   if (!length(package)) return(character())
 
   package <- paste(package, collapse = ",")
-  url <- make_url(sysreqs_cran_url, package = package, platform = platform)
+  url <- make_url(sysreqs_cran_url(), package = package, platform = platform)
 
   unlist(download_json(url))
 }
@@ -61,7 +61,7 @@ get_sysreqs <- function(query, platform = current_platform()) {
 
   query <- as.character(query)[1]
   url <- make_url(
-    sysreqs_url,
+    sysreqs_url(),
     query = encode_slash(utils::URLencode(query)),
     platform = platform
   )

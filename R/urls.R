@@ -1,9 +1,8 @@
 
-sysreqs_base_url <- "https://sysreqs.r-hub.io"
-## sysreqs_base_url <- "http://localhost:3000" # for local testing
-sysreqs_url <- paste0(sysreqs_base_url, "/map-platform/:platform/:query")
-sysreqs_cran_url <- paste0(sysreqs_base_url, "/pkg/:package/:platform")
-sysreqs_platform_url <- paste0(sysreqs_base_url, "/platform/get/:platform")
+sysreqs_base_url <- function() Sys.getenv("SYSREQS_URL", unset = "https://sysreqs.r-hub.io")
+sysreqs_url <- function() paste0(sysreqs_base_url(), "/map-platform/:platform/:query")
+sysreqs_cran_url <- function() paste0(sysreqs_base_url(), "/pkg/:package/:platform")
+sysreqs_platform_url <- function() paste0(sysreqs_base_url(), "/platform/get/:platform")
 rversions_url <- "http://rversions.r-pkg.org/:version"
 
 make_url <- function(url, ...) {
